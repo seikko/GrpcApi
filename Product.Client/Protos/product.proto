@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProductClient";
+
+package product;
+
+message ProductRequest {
+	string id=1;
+}
+message ProductResponse 
+{
+	string id=1;
+	string name=2;
+	string description = 3;
+	double price = 4;
+	int32 available_stock = 5;
+}
+
+
+message AddProductRequest {
+string id = 1;
+string name =2;
+string description =3;
+double price =4;
+int32 available_stock = 5;
+}
+message AddProductResponse{
+string name =1;
+repeated ProductResponse product =2;
+}
+service Product{ 
+
+rpc GetItemById(ProductRequest) returns (ProductResponse){}
+rpc AddProduct(AddProductRequest) returns(ProductResponse){}
+//rpc GetAllProduct(google.protobuf.Empty) returns   ( stream ProductResponse){}
+}
+
+ 
+ 
